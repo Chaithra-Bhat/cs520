@@ -22,6 +22,7 @@ public class RowGameGUI implements View {
      * Creates a new game initializing the GUI.
      */
     public RowGameGUI(RowGameController controller) {
+    	playerturn.setEditable(false);
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(new Dimension(500, 350));
         gui.setResizable(true);
@@ -55,7 +56,7 @@ public class RowGameGUI implements View {
                 game.add(blocks[row][column]);
                 blocks[row][column].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-			controller.move((JButton)e.getSource());
+                    	controller.move((JButton)e.getSource());
                     }
                 });
             }

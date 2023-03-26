@@ -18,7 +18,7 @@ public class RowGameModel
 	
 	// initialize value of private variable player to player 1
 	private PlayerField player = PlayerField.PLAYER_1;
-	public int movesLeft = 9;
+	public int movesLeft = 8;
     private String finalResult = null;
     private String updateType = null;
     private int updatedBlockRowNum = 0;
