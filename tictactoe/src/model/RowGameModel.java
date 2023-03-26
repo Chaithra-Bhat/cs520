@@ -10,8 +10,26 @@ public class RowGameModel
     /**
      * The current player taking their turn
      */
-    public String player = "1";
-    public int movesLeft = 9;
+	// created an enumerator for player 1 and player 2
+	public enum PlayerField {
+		PLAYER_1, 
+		PLAYER_2
+	};
+	
+	// initialize value of private variable player to player 1
+	private PlayerField player = PlayerField.PLAYER_1;
+
+	// getter to access the private variable player
+	public PlayerField getPlayer() {
+		return player;
+	}
+
+	// setter to set the value of private variable player
+	public void setPlayer(PlayerField player) {
+		this.player = player;
+	}
+
+	public int movesLeft = 9;
 
     private String finalResult = null;
 
