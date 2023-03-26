@@ -10,10 +10,11 @@ import java.awt.event.*;
 import model.RowGameModel;
 import controller.RowGameController;
 
-public class RowGameGUI {
+public class RowGameGUI implements View {
     public JFrame gui = new JFrame("Tic Tac Toe");
-    public RowGameModel gameModel = new RowGameModel();
     public JButton[][] blocks = new JButton[3][3];
+    public View boardGameView = null;
+    public View playerStatusView = null;
     public JButton reset = new JButton("Reset");
     public JTextArea playerturn = new JTextArea();
 
@@ -39,7 +40,6 @@ public class RowGameGUI {
         gui.add(messages, BorderLayout.SOUTH);
 
         messages.add(playerturn);
-        playerturn.setText("Player 1 to play 'X'");
 
         reset.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,6 +60,8 @@ public class RowGameGUI {
                 });
             }
         }
+        boardGameView = new ComponentA(blocks);
+        playerStatusView = new ComponentC(playerturn);
     }
 
     /**
@@ -70,8 +72,13 @@ public class RowGameGUI {
      * @param row The row that contains the block
      * @param column The column that contains the block
      */
-    public void updateBlock(RowGameModel gameModel, int row, int column) {
-	blocks[row][column].setText(gameModel.blocksData[row][column].getContents());
-	blocks[row][column].setEnabled(gameModel.blocksData[row][column].getIsLegalMove());
+    @Override
+    public void update(RowGameModel gameModel) {
+    	if(gameModel.getUpdateType() == "GameBlock") {
+    		boardGameView.update(gameModel);
+    	}
+    	if(gameModel.getUpdateType() == "StatusText") {
+    		playerStatusView.update(gameModel);
+    	}
     }
 }

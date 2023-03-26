@@ -18,20 +18,12 @@ public class RowGameModel
 	
 	// initialize value of private variable player to player 1
 	private PlayerField player = PlayerField.PLAYER_1;
-
-	// getter to access the private variable player
-	public PlayerField getPlayer() {
-		return player;
-	}
-
-	// setter to set the value of private variable player
-	public void setPlayer(PlayerField player) {
-		this.player = player;
-	}
-
 	public int movesLeft = 9;
-
     private String finalResult = null;
+    private String updateType = null;
+    private int updatedBlockRowNum = 0;
+    private int updatedBlockColNum = 0;
+    private String playerStatusText = null;
 
 
     public RowGameModel() {
@@ -43,6 +35,32 @@ public class RowGameModel
 	    } // end for col
 	} // end for row
     }
+    
+	// getter to access the private variable player
+	public PlayerField getPlayer() {
+		return player;
+	}
+
+	// setter to set the value of private variable player
+	public void setPlayer(PlayerField player) {
+		this.player = player;
+	}
+    
+	public int getUpdatedBlockRowNum() {
+		return updatedBlockRowNum;
+	}
+
+	public void setUpdatedBlockRowNum(int updatedBlockRowNum) {
+		this.updatedBlockRowNum = updatedBlockRowNum;
+	}
+
+	public int getUpdatedBlockColNum() {
+		return updatedBlockColNum;
+	}
+
+	public void setUpdatedBlockColNum(int updatedBlockColNum) {
+		this.updatedBlockColNum = updatedBlockColNum;
+	}
 
     public String getFinalResult() {
 	return this.finalResult;
@@ -51,4 +69,21 @@ public class RowGameModel
     public void setFinalResult(String finalResult) {
 	this.finalResult = finalResult;
     }
+
+	public String getPlayerStatusText() {
+		return playerStatusText;
+	}
+
+	public void setPlayerStatusText(String playerStatusText) {
+		this.playerStatusText = playerStatusText;
+	}
+
+	public String getUpdateType() {
+		return updateType;
+	}
+
+	public void setUpdateType(String updateType) {
+		this.updateType = updateType;
+	}
+
 }
