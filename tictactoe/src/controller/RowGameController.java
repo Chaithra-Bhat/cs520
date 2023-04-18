@@ -25,8 +25,8 @@ public class RowGameController {
 
         for(int row = 0; row<3; row++) {
             for(int column = 0; column<3 ;column++) {
-	        gameModel.blocksData[row][column].setContents("");
-		gameModel.blocksData[row][column].setIsLegalMove(true);
+		        gameModel.blocksData[row][column].setContents("");
+		        gameModel.blocksData[row][column].setIsLegalMove(true);
             }
         }
 
@@ -41,12 +41,14 @@ public class RowGameController {
     public void move(JButton block) {
 	// The Controller first manipulates the Model.
 	gameModel.movesLeft--;
+	gameView.undoMove.setEnabled(true);
 
 	BlockIndex blockIndex = gameView.getBlockIndex(block);
 	if(gameModel.getPlayer().equals(Player.PLAYER_1)) {
 	    // Check whether player 1 won
 	    if(blockIndex.matches(0, 0)) {
 		gameModel.blocksData[0][0].setContents("X");
+		gameModel.pushToStack(new int[]{0, 0, 1});
 		gameModel.blocksData[0][0].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -64,6 +66,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(0, 1)) {
 		gameModel.blocksData[0][1].setContents("X");
+		gameModel.pushToStack(new int[]{0, 1, 1});
 		gameModel.blocksData[0][1].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -79,6 +82,7 @@ public class RowGameController {
 		}
 		} else if(blockIndex.matches(0, 2)) {
 		gameModel.blocksData[0][2].setContents("X");
+		gameModel.pushToStack(new int[]{0, 2, 1});
 		gameModel.blocksData[0][2].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -96,6 +100,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(1, 0)) {
 		gameModel.blocksData[1][0].setContents("X");
+		gameModel.pushToStack(new int[]{1, 0, 1});
 		gameModel.blocksData[1][0].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -111,6 +116,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(1, 1)) {
 		gameModel.blocksData[1][1].setContents("X");
+		gameModel.pushToStack(new int[]{1, 1, 1});
 		gameModel.blocksData[1][1].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -130,6 +136,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(1, 2)) {
 		gameModel.blocksData[1][2].setContents("X");
+		gameModel.pushToStack(new int[]{1, 2, 1});
 		gameModel.blocksData[1][2].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -145,6 +152,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(2, 0)) {
 		gameModel.blocksData[2][0].setContents("X");
+		gameModel.pushToStack(new int[]{2, 0, 1});
 		gameModel.blocksData[2][0].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -162,6 +170,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(2, 1)) {
 		gameModel.blocksData[2][1].setContents("X");
+		gameModel.pushToStack(new int[]{2, 1, 1});
 		gameModel.blocksData[2][1].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -177,6 +186,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(2, 2)) {
 		gameModel.blocksData[2][2].setContents("X");
+		gameModel.pushToStack(new int[]{2, 2, 1});
 		gameModel.blocksData[2][2].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_2);
 		if(gameModel.movesLeft<7) {
@@ -197,6 +207,7 @@ public class RowGameController {
 	    // Check whether player 2 won
 	    if(blockIndex.matches(0, 0)) {
 		gameModel.blocksData[0][0].setContents("O");
+		gameModel.pushToStack(new int[]{0, 0, 2});
 		gameModel.blocksData[0][0].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -214,6 +225,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(0, 1)) {
 		gameModel.blocksData[0][1].setContents("O");
+		gameModel.pushToStack(new int[]{0, 1, 2});
 		gameModel.blocksData[0][1].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -229,6 +241,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(0, 2)) {
 		gameModel.blocksData[0][2].setContents("O");
+		gameModel.pushToStack(new int[]{0, 2, 2});
 		gameModel.blocksData[0][2].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -246,6 +259,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(1, 0)) {
 		gameModel.blocksData[1][0].setContents("O");
+		gameModel.pushToStack(new int[]{1, 0, 2});
 		gameModel.blocksData[1][0].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -261,6 +275,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(1, 1)) {
 		gameModel.blocksData[1][1].setContents("O");
+		gameModel.pushToStack(new int[]{1, 1, 2});
 		gameModel.blocksData[1][1].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -280,6 +295,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(1, 2)) {
 		gameModel.blocksData[1][2].setContents("O");
+		gameModel.pushToStack(new int[]{1, 2, 2});
 		gameModel.blocksData[1][2].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -295,6 +311,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(2, 0)) {
 		gameModel.blocksData[2][0].setContents("O");
+		gameModel.pushToStack(new int[]{2, 0, 2});
 		gameModel.blocksData[2][0].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -312,6 +329,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(2, 1)) {
 		gameModel.blocksData[2][1].setContents("O");
+		gameModel.pushToStack(new int[]{2, 1, 2});
 		gameModel.blocksData[2][1].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -327,6 +345,7 @@ public class RowGameController {
 		}
 	    } else if(blockIndex.matches(2, 2)) {
 		gameModel.blocksData[2][2].setContents("O");
+		gameModel.pushToStack(new int[]{2, 2, 2});
 		gameModel.blocksData[2][2].setIsLegalMove(false);
 		gameModel.setPlayer(Player.PLAYER_1);
 		if(gameModel.movesLeft<7) {
@@ -359,7 +378,8 @@ public class RowGameController {
 		gameModel.blocksData[row][column].setIsLegalMove(false);
 	    }
 	}
-
+	
+	gameView.undoMove.setEnabled(false);
 	// The Controller then updates the View.
 	gameView.update(gameModel);
     }
@@ -368,18 +388,56 @@ public class RowGameController {
      * Resets the game to be able to start playing again.
      */
     public void resetGame() {
+    	gameModel.clearStack();
 	// The Controller first manipulates the Model.
         for(int row = 0;row<3;row++) {
             for(int column = 0;column<3;column++) {
                 gameModel.blocksData[row][column].reset();
-		gameModel.blocksData[row][column].setIsLegalMove(true);
+                gameModel.blocksData[row][column].setIsLegalMove(true);
             }
         }
         gameModel.setPlayer(Player.PLAYER_1);
         gameModel.movesLeft = 9;
-	gameModel.setFinalResult(null);
-
-	// The Controller then updates the View.
-	gameView.update(gameModel);
+		gameModel.setFinalResult(null);
+	
+		// The Controller then updates the View.
+		gameView.update(gameModel);
+    }
+    
+    /**
+     * Undo the previous move of the player who played their turn
+     */
+    public void undoPlayerMove() {
+    	// Here the Controller manipulates the Model first and then the View
+    	if(!gameModel.isStackEmpty()) {
+    		if(gameModel.getPlayer().equals(Player.PLAYER_1)) {
+    			if(gameModel.stackPeek()[2] == 2) {
+    				int[] cell = gameModel.popFromStack();
+    				gameModel.blocksData[cell[0]][cell[1]].setContents("");
+    				gameModel.blocksData[cell[0]][cell[1]].setIsLegalMove(true);
+    				gameModel.movesLeft++;
+    				gameModel.setPlayer(Player.PLAYER_2);
+    				gameView.undoMove.setEnabled(false);
+    				gameView.update(gameModel);
+    			}
+    			else {
+    				System.out.println("Not played a move in this turn. Undo not allowed");
+    			}
+    		}
+    		else {
+    			if(gameModel.stackPeek()[2] == 1) {
+    				int[] cell = gameModel.popFromStack();
+    				gameModel.blocksData[cell[0]][cell[1]].setContents("");
+    				gameModel.blocksData[cell[0]][cell[1]].setIsLegalMove(true);
+    				gameModel.movesLeft++;
+    				gameModel.setPlayer(Player.PLAYER_1);
+    				gameView.undoMove.setEnabled(false);
+    				gameView.update(gameModel);
+    			}
+    			else {
+    				System.out.println("Not played a move in this turn. Undo not allowed");
+    			}
+    		}
+    	}
     }
 }

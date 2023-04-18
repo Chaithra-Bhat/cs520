@@ -23,6 +23,9 @@ public class RowGameGUI implements View {
     /** For the Composite design pattern, the RowGameGUI is the Composite */
     private List<View> viewList = new ArrayList<View>();
     public JButton reset = new JButton("Reset");
+    
+    // creates a JButton for the undo functionality
+    public JButton undoMove = new JButton("Undo");
 
 
     /**
@@ -38,6 +41,9 @@ public class RowGameGUI implements View {
         gamePanel.add(game, BorderLayout.CENTER);
 
         JPanel options = new JPanel(new FlowLayout());
+        // The undo button is initially disabled
+        undoMove.setEnabled(false);
+        options.add(undoMove);
         options.add(reset);
         JPanel messages = new JPanel(new FlowLayout());
         messages.setBackground(Color.white);
@@ -46,8 +52,15 @@ public class RowGameGUI implements View {
         gui.add(options, BorderLayout.CENTER);
         gui.add(messages, BorderLayout.SOUTH);
 
-	GameStatusView gameStatusView = new GameStatusView(messages);
-	addView(gameStatusView);
+		GameStatusView gameStatusView = new GameStatusView(messages);
+		addView(gameStatusView);
+		
+		/* Click listener for undo */
+		undoMove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                controller.undoPlayerMove();
+            }
+        });
 
         reset.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -55,8 +68,8 @@ public class RowGameGUI implements View {
             }
         });
 
-	this.gameBoardView = new GameBoardView(game, controller);
-	addView(this.gameBoardView);
+		this.gameBoardView = new GameBoardView(game, controller);
+		addView(this.gameBoardView);
     }
 
     public BlockIndex getBlockIndex(JButton block) {
