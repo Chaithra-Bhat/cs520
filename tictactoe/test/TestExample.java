@@ -98,6 +98,30 @@ public class TestExample {
     }
     
     @Test
+    public void testIllegalMove(){
+        //Things to test:
+        //first make a move in an empty block
+        //then check that the move has been made (number of moves left should decrease)
+        //then check that the block is disabled
+        //check that it is next player's turn
+        //then make another movve in the same block
+        //for the move to not be made:
+            //moves left should not change
+            //block should still be disabled
+            //should still be player 2's turn
+    	gBlocks = this.boardView.getBlock();
+    	gameController.move(gBlocks[0][0]);
+        assertEquals(8,gameController.gameModel.movesLeft);
+        assertEquals(false, gameController.gameModel.blocksData[0][0].getIsLegalMove());
+        assertEquals(Player.PLAYER_2, gameController.gameModel.getPlayer());
+        assertEquals("X", gameController.gameModel.blocksData[0][0].getContents());
+    	gameController.move(gBlocks[0][0]);
+        assertEquals(8,gameController.gameModel.movesLeft);
+        assertEquals(false, gameController.gameModel.blocksData[0][0].getIsLegalMove());
+        assertEquals(Player.PLAYER_2, gameController.gameModel.getPlayer());
+    }
+    
+    @Test
     public void testUndoInitial() {
     	// First checks if no moves have been made and then check if the button is disabled
     	 assertEquals(9, gameController.gameModel.movesLeft);
