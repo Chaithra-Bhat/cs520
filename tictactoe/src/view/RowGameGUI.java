@@ -23,9 +23,8 @@ public class RowGameGUI implements View {
     /** For the Composite design pattern, the RowGameGUI is the Composite */
     private List<View> viewList = new ArrayList<View>();
     public JButton reset = new JButton("Reset");
-    
-    // creates a JButton for the undo functionality
-    public JButton undoMove = new JButton("Undo");
+    private JButton undoButton = new JButton("Undo");
+    public UndoView undoView = new UndoView(undoButton);
 
 
     /**
@@ -42,8 +41,8 @@ public class RowGameGUI implements View {
 
         JPanel options = new JPanel(new FlowLayout());
         // The undo button is initially disabled
-        undoMove.setEnabled(false);
-        options.add(undoMove);
+        undoView.disableUndo();
+        options.add(undoButton);
         options.add(reset);
         JPanel messages = new JPanel(new FlowLayout());
         messages.setBackground(Color.white);
@@ -56,7 +55,7 @@ public class RowGameGUI implements View {
 		addView(gameStatusView);
 		
 		/* Click listener for undo */
-		undoMove.addActionListener(new ActionListener() {
+		undoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controller.undoPlayerMove();
             }
