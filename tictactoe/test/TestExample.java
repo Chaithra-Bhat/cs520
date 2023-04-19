@@ -67,6 +67,37 @@ public class TestExample {
     }
     
     @Test
+    public void testTieGame(){
+    	gBlocks = this.boardView.getBlock();
+    	gameController.move(gBlocks[0][0]);
+    	gameController.move(gBlocks[1][1]);
+    	gameController.move(gBlocks[2][0]);
+    	gameController.move(gBlocks[1][0]);
+    	gameController.move(gBlocks[1][2]);
+    	gameController.move(gBlocks[0][1]);
+    	gameController.move(gBlocks[2][1]);
+    	gameController.move(gBlocks[2][2]);
+    	gameController.move(gBlocks[0][2]);
+        assertEquals(0,gameController.gameModel.movesLeft);
+        assertEquals("Game ends in a draw", gameController.gameModel.getFinalResult());
+    }
+    @Test
+    public void testOnePlayerWins(){
+    	gBlocks = this.boardView.getBlock();
+    	gameController.move(gBlocks[0][0]);
+    	gameController.move(gBlocks[1][1]);
+    	gameController.move(gBlocks[2][0]);
+    	gameController.move(gBlocks[1][0]);
+    	gameController.move(gBlocks[1][2]);
+    	gameController.move(gBlocks[0][1]);
+    	gameController.move(gBlocks[2][1]);
+    	gameController.move(gBlocks[0][2]);
+    	gameController.move(gBlocks[2][2]);
+        assertEquals(0,gameController.gameModel.movesLeft);
+        assertEquals("Player 1 wins!", gameController.gameModel.getFinalResult());
+    }
+    
+    @Test
     public void testUndoInitial() {
     	// First checks if no moves have been made and then check if the button is disabled
     	 assertEquals(9, gameController.gameModel.movesLeft);
