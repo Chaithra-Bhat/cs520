@@ -46,11 +46,15 @@ public class RowGameController {
      * @param block The block to be moved to by the current player
      */
     public void move(JButton block) {
+    	
 	// The Controller first manipulates the Model.
-	gameModel.movesLeft--;
-	gameView.undoView.enableUndo();
-
-	BlockIndex blockIndex = gameView.getBlockIndex(block);
+    	BlockIndex blockIndex = gameView.getBlockIndex(block);
+		if ((blockIndex == null) ||
+			        (gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove() == false)) {
+			        return;
+			        }
+		gameModel.movesLeft--;
+		gameView.undoView.enableUndo();
 	if(gameModel.getPlayer().equals(Player.PLAYER_1)) {
 	    // Check whether player 1 won
 	    if(blockIndex.matches(0, 0)) {

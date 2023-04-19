@@ -44,6 +44,29 @@ public class TestExample {
     }
     
     @Test
+    public void testLegalMove(){
+    	gBlocks = this.boardView.getBlock();
+    	gameController.move(gBlocks[0][0]);
+        assertEquals(8,gameController.gameModel.movesLeft);
+        assertEquals(Player.PLAYER_2, gameController.gameModel.getPlayer());
+        assertEquals(false, gameController.gameModel.blocksData[0][0].getIsLegalMove());
+        assertEquals("X", gameController.gameModel.blocksData[0][0].getContents());
+    }
+    @Test
+    public void testReset(){
+    	gBlocks = this.boardView.getBlock();
+    	gameController.move(gBlocks[0][0]);
+        assertEquals("X", gameController.gameModel.blocksData[0][0].getContents());
+    	gBlocks = this.boardView.getBlock();
+    	gameController.move(gBlocks[1][1]);
+        assertEquals("O", gameController.gameModel.blocksData[1][1].getContents());
+        gameController.resetGame();
+        assertEquals(Player.PLAYER_1, gameController.gameModel.getPlayer());
+        assertEquals(9,gameController.gameModel.movesLeft);
+        assertEquals(null, gameController.gameModel.getFinalResult());
+    }
+    
+    @Test
     public void testUndoInitial() {
     	// First checks if no moves have been made and then check if the button is disabled
     	 assertEquals(9, gameController.gameModel.movesLeft);
