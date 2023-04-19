@@ -80,4 +80,8 @@ public class GameBoardView implements View
 	    } // end for col
 	} // end for row
     }
+    
+    public JButton[][] getBlock() {
+    	return this.blocks;
+    }
 } // end for GameBoardView

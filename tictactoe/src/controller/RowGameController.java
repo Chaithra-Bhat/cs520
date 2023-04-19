@@ -36,7 +36,11 @@ public class RowGameController {
 	gameView.update(gameModel);
     }
 
-    /**
+    public RowGameGUI getGameView() {
+		return gameView;
+	}
+    
+	/**
      * Moves the current player into the given block.
      *
      * @param block The block to be moved to by the current player

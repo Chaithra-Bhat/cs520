@@ -25,4 +25,8 @@ public class UndoView {
 	public void enableUndo() {
 		this.undoMove.setEnabled(true);
 	}
+	
+	public boolean buttonState() {
+		return this.undoMove.isEnabled();
+	}
 }

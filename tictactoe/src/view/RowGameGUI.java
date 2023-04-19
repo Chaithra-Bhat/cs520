@@ -20,7 +20,7 @@ public class RowGameGUI implements View {
     public JFrame gui = new JFrame("Tic Tac Toe");
     public RowGameModel gameModel = new RowGameModel();
     private GameBoardView gameBoardView;
-    /** For the Composite design pattern, the RowGameGUI is the Composite */
+	/** For the Composite design pattern, the RowGameGUI is the Composite */
     private List<View> viewList = new ArrayList<View>();
     public JButton reset = new JButton("Reset");
     private JButton undoButton = new JButton("Undo");
@@ -71,6 +71,10 @@ public class RowGameGUI implements View {
 		addView(this.gameBoardView);
     }
 
+    public GameBoardView getGameBoardView() {
+		return gameBoardView;
+	}
+    
     public BlockIndex getBlockIndex(JButton block) {
 	return this.gameBoardView.getBlockIndex(block);
     }
