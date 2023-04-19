@@ -10,7 +10,11 @@ Undo Functionality
 
 * Controller: On clicking the undo button, the Controller calls the undo method to remove the last move made and updates the game board accordingly. Every player is allowed to undo only their move as many times as they want, as long as its their turn to play. In other words, the pop from stack operation is allowed as long as the topmost element in the stack has the same player number as the one whose turn it is. One player is not allowed to undo the move of another player (button is disabled). If there are no moves in the stack, the undo button is disabled.
 
-* Test Cases: Two test cases were also added, one of which was if the user has not done at least one move, the user is not permitted to undo and the other one was if the user has done at least one move, the user is permitted to undo and the game is updated appropriately.
+* Test Cases: Two test cases were also added for the undo functionality, one of which was if the user has not done at least one move, the user is not permitted to undo and the other one was if the user has done at least one move, the user is permitted to undo and the game is updated appropriately.
+
+Testability
+
+* Apart from the above, test cases were also added to check an illegal move, a legal move, if one of the players wins the game, if players tie the game and on reset game.
 
 ### How to build and test (from Terminal):
 
